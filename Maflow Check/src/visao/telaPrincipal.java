@@ -86,8 +86,15 @@ public class telaPrincipal extends JFrame {
 		 try {  
 	          
 	   //       UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"); //Windows
-			 	UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-	            System.out.println(System.getProperty("os.name"));
+	  //		UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+	            
+	            String OS = System.getProperty("os.name");
+	            	if (OS == "Windows"){
+	            		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+	            	}else{
+	            		UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+	            	}
+	            	
 	          
 	        }catch(Exception e) {  
 	            //Inseira qualuquer codigo, se necess�rio.  

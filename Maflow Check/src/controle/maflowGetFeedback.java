@@ -34,6 +34,7 @@ public class maflowGetFeedback {
 		
 		try {
 				
+			@SuppressWarnings("resource")
 			BufferedReader in = new BufferedReader (new FileReader(arquivo));
 		//	System.out.println(in.readLine());
 			
@@ -57,14 +58,14 @@ public class maflowGetFeedback {
 								if (novaProducao > 0 && horaProd.getTime() >= horaMax.getTime() ){
 									
 									
-									System.out.println("Nova produção encontrada: " + novaProducao);
+									System.out.println("Nova produï¿½ï¿½o encontrada: " + novaProducao);
 									horaMax = horaProd;
 									System.out.println(horaMax);
 								//	System.out.println(aux.get(i));
 									
 									
 								}else{
-									System.out.println("nenhuma produção carregada");
+									System.out.println("nenhuma produï¿½ï¿½o carregada");
 								}
 						}
 						

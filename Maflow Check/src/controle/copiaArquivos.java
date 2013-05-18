@@ -16,7 +16,7 @@ public class copiaArquivos {
 	    
 	        // Create an instance of file object.
 	    	File diretorio = new File(dir);
-	        File arquivo = new File(dir,nomeArq);
+	  //    File arquivo = new File(dir,nomeArq);
 	        File [] lista = diretorio.listFiles();
 	        
 			        for (int i = 0; i < lista.length; i++ ){

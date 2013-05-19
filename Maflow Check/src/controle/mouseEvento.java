@@ -7,28 +7,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
-public class mouseEvento extends MouseAdapter{
-
-	
-	//static telaPrincipal telaPrincipal;
-	
-	
+public class mouseEvento extends MouseAdapter{	
 	
 	private	JButton btnPlay;
 	private	boolean playPause;
 
 	
-
 	public mouseEvento(JButton btnPlay, boolean playPause) {
 		// TODO Auto-generated constructor stub
 		
 		this.btnPlay=btnPlay;
 		
-		this.playPause=playPause;
-		
-
-			
-	
+		this.playPause=playPause;	
 	
 	}
 
@@ -41,7 +31,7 @@ public class mouseEvento extends MouseAdapter{
 		if(playPause == true){
 			
 			btnPlay.setIcon(new ImageIcon("imagem/btnPause.png"));
-		//	playPause = true;
+			
 			
 			}else{	
 				
@@ -63,7 +53,9 @@ public class mouseEvento extends MouseAdapter{
 			btnPlay.setToolTipText("Parar o monitoramento");
 			
 		}else{
+			
 			btnPlay.setIcon(new ImageIcon("imagem/btnPlay.png"));
+			
 		}
 	}
 
@@ -75,7 +67,9 @@ public class mouseEvento extends MouseAdapter{
 				btnPlay.setIcon(new ImageIcon("imagem/loading.gif"));
 				
 				}else{
+					
 					btnPlay.setIcon(new ImageIcon("imagem/btnPlay.png"));
+					
 				}
 				
 
@@ -89,7 +83,7 @@ public class mouseEvento extends MouseAdapter{
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {		
+	public void mouseReleased(MouseEvent e) {	
 		
 		
 			btnPlay.setIcon(new ImageIcon("imagem/btnPlay.png"));

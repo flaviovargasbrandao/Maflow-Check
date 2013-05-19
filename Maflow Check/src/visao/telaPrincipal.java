@@ -3,8 +3,6 @@ package visao;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 
 import javax.swing.GroupLayout;
@@ -47,7 +45,7 @@ public class telaPrincipal extends JFrame {
 	prodLoad checkProd;
 	checkArquivos checkArquivos;
 	Timer timer;
-	static minimizaJanela minimizaJanela = null;
+	//static minimizaJanela minimizaJanela = null;
 	static telaPrincipal telaPrincipal = null;	
 	boolean playPause;	
 	JButton btnRefresh = new JButton("");
@@ -144,16 +142,16 @@ public class telaPrincipal extends JFrame {
 			
 
 			
-			 addWindowListener( new WindowAdapter(){
-				 
-			      public void windowIconified(WindowEvent evnt){
-			    	  
-			        setVisible(false);
-			       getMinimizaJanela();
-			     
-			      }
-			     }
-			   );
+//			 addWindowListener( new WindowAdapter(){
+//				 
+//			      public void windowIconified(WindowEvent evnt){
+//			    	  
+//			        setVisible(false);
+//			       getMinimizaJanela();
+//			     
+//			      }
+//			     }
+//			   );
 
 			
 	
@@ -237,65 +235,45 @@ public class telaPrincipal extends JFrame {
 		
 		
 			btnPlay.addActionListener(new ActionListener() {
-			//	ativaPlayPause ativaPlayPause = new ativaPlayPause(tabela, modelo);	
-				
-			//	boolean resume = false;
+			
 
 				public void actionPerformed(ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					
-					
-					
-						if (playPause == false) {
-														
 										
-							playPause = true;
+						if (playPause == false) {
 							
-													
+							playPause = true;
+																				
 								btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
-																
-									
+								
 								timer.start();
-							//	ativaPlayPause.start();
-																	
-									
+								
 																						
 								
 						} else {				
 								
-							
 								playPause = false;
 														
 								btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
 								
-								timer.stop();
-							//	ativaPlayPause.stop();
-							
-								
-								
-								
-							
+								timer.stop();		
 								
 					}
-						
-					
+											
 				}
 			});
 			
-			
-				
 		
 		
 		/*
 		 * fim action listener
 		 */
 		
-		
-
-
-		
-
-		
+		/*
+		 * Construção do layout
+		 */
+			
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
@@ -322,11 +300,11 @@ public class telaPrincipal extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-	void getMinimizaJanela(){
-		
-		if (minimizaJanela == null){
-			minimizaJanela = new minimizaJanela();
-		}
-	}
+//	void getMinimizaJanela(){
+//		
+//		if (minimizaJanela == null){
+//			minimizaJanela = new minimizaJanela();
+//		}
+//	}
 
 }

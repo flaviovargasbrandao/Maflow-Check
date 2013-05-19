@@ -11,8 +11,7 @@ public class getsetProducao {
 	private String tiragem;
 	private String dobradeira;
 	private String tipo_bobina;
-//	private static  Properties config = new Properties();
-//	private static String arquivo = "74520.MFF";
+
 	
 	
 	public getsetProducao(){

@@ -15,13 +15,11 @@ public class copiaArquivos {
 		public void ultimoModificado(){
 	    
 	        // Create an instance of file object.
-	    	File diretorio = new File(dir);
-	  //    File arquivo = new File(dir,nomeArq);
+	    	File diretorio = new File(dir);	    	
 	        File [] lista = diretorio.listFiles();
 	        
-			        for (int i = 0; i < lista.length; i++ ){
+			        for (int i = 0; i < lista.length; i++ ){			        	
 			        	
-			        	// Get the last modification information.
 				        lastModified  = diretorio.lastModified();
 			        }
 	        

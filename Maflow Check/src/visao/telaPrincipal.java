@@ -44,8 +44,7 @@ public class telaPrincipal extends JFrame {
 	prodLoad prodCheck;
 	prodLoad checkProd;
 	checkArquivos checkArquivos;
-	Timer timer;
-	//static minimizaJanela minimizaJanela = null;
+	Timer timer;	
 	static telaPrincipal telaPrincipal = null;	
 	boolean playPause;	
 	JButton btnRefresh = new JButton("");
@@ -81,13 +80,19 @@ public class telaPrincipal extends JFrame {
 	 */
 	public telaPrincipal() {
 		
+		
+		
 		 try {  
 	 
 	            
 	            String OS = System.getProperty("os.name");
-	            	if (OS == "Windows"){
+	            
+	            if (OS.equals("Windows") ){
+	            
 	            		UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+	            	
 	            	}else{
+	            		
 	            		UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
 	            	}
 	            	
@@ -108,25 +113,28 @@ public class telaPrincipal extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 		
-		
-		
-	
+		/*
+		 * iniciar a modelagem da tabela no frame
+		 */		
 		
 		modelo = new modeloTabela();
+		
 		tabela = new JTable();
+		
 		tabela.setModel(modelo);
-		
-		
 		
 		scrollPane.setViewportView(tabela);
 		
 		
-		TableColumnModel colunaModel = tabela.getColumnModel();
+		TableColumnModel colunaModel = tabela.getColumnModel();		
 		
 		iconeCheck iconecheck = new iconeCheck();
+		
 		colunaModel.getColumn(0).setCellRenderer(iconecheck);
 		
-		
+		/*
+		 * altera o tamanho das colunas
+		 */
 		
 		colunaModel.getColumn(0).setPreferredWidth(12);
 		colunaModel.getColumn(1).setPreferredWidth(12);
@@ -135,79 +143,23 @@ public class telaPrincipal extends JFrame {
 		colunaModel.getColumn(4).setPreferredWidth(20);
 		colunaModel.getColumn(5).setPreferredWidth(10);
 		colunaModel.getColumn(6).setPreferredWidth(70);
+
+		
 		/*
-		 * adicionando tema windows ao JFrame
+		 * iniciar botões e inserir imagens. 
 		 */
-		try {
-			
-
-			
-//			 addWindowListener( new WindowAdapter(){
-//				 
-//			      public void windowIconified(WindowEvent evnt){
-//			    	  
-//			        setVisible(false);
-//			       getMinimizaJanela();
-//			     
-//			      }
-//			     }
-//			   );
-
-			
-	
-
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("tela principal " + e.getMessage());
-			}
-			
 		
 		btnRefresh.setToolTipText("Atualiza\u00E7\u00E3o Manual");
 		
-		btnRefresh.setIcon(new ImageIcon ("imagem/btnRefresh.png"));
-		
-			
-			
-		/*
-		 * Executa refresh e recarrega a tabela
-		 */
-		
-				btnRefresh.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						try {
-							
-							//String diretorio = "maflowFiles";
-							//File dir = new File (diretorio);
-							File arquivo = new File("maflowFiles/Pr_EaeFi.log");
-							modelo.limpar();
-							checkArquivos = new checkArquivos();
-							checkArquivos.buscaArquivo(tabela, modelo);
-							maflowGetFeedback feedback = new maflowGetFeedback();
-							feedback.pegaFeedback(arquivo);
-							
-						} catch (Exception e) {
-							// TODO: handle exception
-							System.out.println(e.getMessage());
-						}
-					}
-				});		
-		
-
-		/*
-		 * criar uma classe para que essa action seja retirada do construtor
-		 * 
-		 *  08/05/2013 classe mouseEvento criada e operando,
-		 *  Proximo passo verificar se os processos est�o rodando e parando
-		 *  remover o action listener do construtor e criar um metodo separado para cada bot�o na classe 
-		 */
-			
-				
+		btnRefresh.setIcon(new ImageIcon ("imagem/btnRefresh.png"));	
+						
 		btnPlay.setIcon(new ImageIcon("imagem/btnPlay.png"));
+		
 		btnPlay.setToolTipText("Inicia o monitoramento");
 		
 		
 		/*
-		 * inicio action listener
+		 * inicio action listener Timer para agendar tarefa de analise recorrente
 		 */
 		
 			timer = new Timer(10000, new ActionListener() {
@@ -216,6 +168,7 @@ public class telaPrincipal extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
 					try {
+						
 						modelo.limpar();
 						
 						checkArquivos = new checkArquivos();
@@ -223,15 +176,53 @@ public class telaPrincipal extends JFrame {
 						checkArquivos.buscaArquivo(tabela, modelo);
 
 						tabela.revalidate();
+						
 						Thread.sleep(1000);
+						
 					} catch (InterruptedException e1) {
 						// TODO Auto-generated catch block
+						
 						e1.printStackTrace();
+						
 					}
 				}
 			});
-		
 			
+			/*
+			 * Executa refresh e recarrega a tabela
+			 */
+			
+					btnRefresh.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							try {
+																
+								File arquivo = new File("maflowFiles/Pr_EaeFi.log");
+								
+								modelo.limpar();
+								
+								checkArquivos = new checkArquivos();
+								
+								checkArquivos.buscaArquivo(tabela, modelo);
+								
+								maflowGetFeedback feedback = new maflowGetFeedback();
+								
+								feedback.pegaFeedback(arquivo);
+								
+							} catch (Exception e) {
+								
+								// TODO: handle exception
+								
+								System.out.println(e.getMessage());
+								
+								}
+							}
+						});	
+			
+			
+			
+			/*
+			 * inicio da action listener - Botão Play
+			 */
 		
 		
 			btnPlay.addActionListener(new ActionListener() {
@@ -241,28 +232,26 @@ public class telaPrincipal extends JFrame {
 					// TODO Auto-generated method stub
 					
 										
-						if (playPause == false) {
+						if (!playPause) {
 							
 							playPause = true;
 																				
-								btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
+							btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
 								
-								timer.start();
-								
-																						
+							timer.start();																													
 								
 						} else {				
 								
-								playPause = false;
-														
-								btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
+							playPause = false;
+													
+							btnPlay.addMouseListener(new mouseEvento(btnPlay, playPause));
 								
-								timer.stop();		
-								
+							timer.stop();		
+									
+						}
+												
 					}
-											
-				}
-			});
+				});
 			
 		
 		
@@ -300,11 +289,6 @@ public class telaPrincipal extends JFrame {
 		contentPane.setLayout(gl_contentPane);
 	}
 	
-//	void getMinimizaJanela(){
-//		
-//		if (minimizaJanela == null){
-//			minimizaJanela = new minimizaJanela();
-//		}
-//	}
+
 
 }

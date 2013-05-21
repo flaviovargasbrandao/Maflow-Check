@@ -28,7 +28,7 @@ public class mouseEvento extends MouseAdapter{
 	@Override
 	public void mouseClicked(MouseEvent e) {
 			
-		if(playPause == true){
+		if(playPause){
 			
 			btnPlay.setIcon(new ImageIcon("imagem/btnPause.png"));
 			
@@ -47,7 +47,7 @@ public class mouseEvento extends MouseAdapter{
 	public void mouseEntered(MouseEvent e) {
 
 			
-		if (playPause == true){
+		if (playPause){
 			
 			btnPlay.setIcon(new ImageIcon("imagem/btnPause.png"));
 			btnPlay.setToolTipText("Parar o monitoramento");
@@ -62,7 +62,7 @@ public class mouseEvento extends MouseAdapter{
 	@Override
 	public void mouseExited(MouseEvent e) {
 
-			if (playPause == true){
+			if (playPause){
 				
 				btnPlay.setIcon(new ImageIcon("imagem/loading.gif"));
 				
